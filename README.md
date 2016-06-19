@@ -8,7 +8,9 @@ Currently [Google's Firebase analytics](https://firebase.google.com) support onl
 
 ### Main method
 
-The main method is in ViewController.m which receives events from web app through userContentController. WebApp simply uses 
+The main method is in ViewController.m which receives events from web app through userContentController. 
+
+On your WebApp javascript simply use: 
 ```html
 window.webkit.messageHandlers.youeventhandlername.postMessage(event)
 ```
