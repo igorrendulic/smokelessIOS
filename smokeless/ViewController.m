@@ -29,8 +29,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:request];
     
-    NSLog(@"Loaded");
-    
     [self.view addSubview:_webView];
 }
 
@@ -46,7 +44,6 @@
         NSString *category = [message.body objectForKey:@"category"];
         [FIRAnalytics logEventWithName:name parameters:@{@"category":category}];
     }
-   
 }
 
 #pragma mark - WKNavigationDelegate
