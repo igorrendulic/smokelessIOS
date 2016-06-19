@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F0B16529858053652C0F099 /* libPods-smokeless.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E6782FE254E174147D2277 /* libPods-smokeless.a */; };
+		5D02ED651D1721C800B95E41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D02ED641D1721C800B95E41 /* GoogleService-Info.plist */; };
 		5D16D5301D14E5E600DC74C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D16D52F1D14E5E600DC74C1 /* main.m */; };
 		5D16D5331D14E5E600DC74C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D16D5321D14E5E600DC74C1 /* AppDelegate.m */; };
 		5D16D5361D14E5E600DC74C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D16D5351D14E5E600DC74C1 /* ViewController.m */; };
@@ -16,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D02ED641D1721C800B95E41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D16D52B1D14E5E600DC74C1 /* smokeless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smokeless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D16D52F1D14E5E600DC74C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D16D5311D14E5E600DC74C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 		5D16D53A1D14E5E600DC74C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D16D53D1D14E5E600DC74C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D16D53F1D14E5E600DC74C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0EF2E4809CD3C681A47FB79 /* Pods-smokeless.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smokeless.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smokeless/Pods-smokeless.debug.xcconfig"; sourceTree = "<group>"; };
+		DBCE35AA914F0553D03E121C /* Pods-smokeless.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smokeless.release.xcconfig"; path = "Pods/Target Support Files/Pods-smokeless/Pods-smokeless.release.xcconfig"; sourceTree = "<group>"; };
+		F3E6782FE254E174147D2277 /* libPods-smokeless.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-smokeless.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F0B16529858053652C0F099 /* libPods-smokeless.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +51,8 @@
 			children = (
 				5D16D52D1D14E5E600DC74C1 /* smokeless */,
 				5D16D52C1D14E5E600DC74C1 /* Products */,
+				659E667D233633F57C44C6E0 /* Pods */,
+				60F1E0C03D59B025AEF5EFC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +71,7 @@
 				5D16D5321D14E5E600DC74C1 /* AppDelegate.m */,
 				5D16D5341D14E5E600DC74C1 /* ViewController.h */,
 				5D16D5351D14E5E600DC74C1 /* ViewController.m */,
+				5D02ED641D1721C800B95E41 /* GoogleService-Info.plist */,
 				5D16D5371D14E5E600DC74C1 /* Main.storyboard */,
 				5D16D53A1D14E5E600DC74C1 /* Assets.xcassets */,
 				5D16D53C1D14E5E600DC74C1 /* LaunchScreen.storyboard */,
@@ -79,6 +89,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		60F1E0C03D59B025AEF5EFC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3E6782FE254E174147D2277 /* libPods-smokeless.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		659E667D233633F57C44C6E0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0EF2E4809CD3C681A47FB79 /* Pods-smokeless.debug.xcconfig */,
+				DBCE35AA914F0553D03E121C /* Pods-smokeless.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +113,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5D16D5421D14E5E600DC74C1 /* Build configuration list for PBXNativeTarget "smokeless" */;
 			buildPhases = (
+				F6436710CB548043DEBE8C76 /* [CP] Check Pods Manifest.lock */,
 				5D16D5271D14E5E600DC74C1 /* Sources */,
 				5D16D5281D14E5E600DC74C1 /* Frameworks */,
 				5D16D5291D14E5E600DC74C1 /* Resources */,
+				1F7FAD61336A862EC0F199B5 /* [CP] Embed Pods Frameworks */,
+				6A8181C2E5C96FE438A3DB63 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -137,12 +167,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D16D53E1D14E5E600DC74C1 /* LaunchScreen.storyboard in Resources */,
+				5D02ED651D1721C800B95E41 /* GoogleService-Info.plist in Resources */,
 				5D16D53B1D14E5E600DC74C1 /* Assets.xcassets in Resources */,
 				5D16D5391D14E5E600DC74C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F7FAD61336A862EC0F199B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-smokeless/Pods-smokeless-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A8181C2E5C96FE438A3DB63 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-smokeless/Pods-smokeless-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6436710CB548043DEBE8C76 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5D16D5271D14E5E600DC74C1 /* Sources */ = {
@@ -263,6 +342,7 @@
 		};
 		5D16D5431D14E5E600DC74C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0EF2E4809CD3C681A47FB79 /* Pods-smokeless.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = smokeless/Info.plist;
@@ -274,6 +354,7 @@
 		};
 		5D16D5441D14E5E600DC74C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBCE35AA914F0553D03E121C /* Pods-smokeless.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = smokeless/Info.plist;
@@ -302,6 +383,7 @@
 				5D16D5441D14E5E600DC74C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

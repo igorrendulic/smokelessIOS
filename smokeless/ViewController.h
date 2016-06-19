@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
+@import Firebase;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <WKScriptMessageHandler,WKNavigationDelegate>
 
+@property (nonatomic, strong) WKWebView *webView;
 
 @end
 
