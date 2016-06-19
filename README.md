@@ -4,7 +4,7 @@ Project is part of [smokeless project] (https://github.com/igorrendulic/smokeles
 
 ## Project Goal
 
-Currently (Google's Firebase analytics)[https://firebase.google.com/] support only iOS and Android. This is example how to track WKWebView embedded mobile web app with Firebase Analytics. 
+Currently [Google's Firebase analytics](https://firebase.google.com) support only iOS and Android. This is example how to track WKWebView embedded mobile web app with Firebase Analytics. 
 
 ### Main method
 
