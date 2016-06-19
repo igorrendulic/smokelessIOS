@@ -12,7 +12,17 @@ You need to follow instructions [Firebase SDK Setup](https://firebase.google.com
 
 ### Main method
 
-The main method is in ViewController.m which receives events from web app through userContentController. 
+The main method is in ViewController.m which receives events from web app through userContentController:
+```objective-c
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    // Log out the message received
+    if (message && [message.name isEqualToString:@"trackEvent"]) {
+        NSString *name = [message.body objectForKey:@"name"];
+        NSString *category = [message.body objectForKey:@"category"];
+        [FIRAnalytics logEventWithName:name parameters:@{@"category":category}];
+    }
+}
+```
 
 On your WebApp javascript simply use: 
 ```html
