@@ -13,6 +13,7 @@
 @interface ViewController : UIViewController <WKScriptMessageHandler,WKNavigationDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) UIProgressView *progressView;
 
 @end
 

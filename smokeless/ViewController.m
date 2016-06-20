@@ -23,13 +23,32 @@
     [_webView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
     
     _webView.navigationDelegate = self;
+    [self.view addSubview:_webView];
     
-    //NSURL *url = [NSURL URLWithString:@"https://project-5518000328915581804.firebaseapp.com"];
-    NSURL *url = [NSURL URLWithString:@"http://localhost:8100"];
+    [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    
+    _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    _progressView.frame = CGRectMake(0, 0, self.view.frame.size.width, 20);
+    
+    NSURL *url = [NSURL URLWithString:@"https://project-5518000328915581804.firebaseapp.com"];
+    //NSURL *url = [NSURL URLWithString:@"http://localhost:8100"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [self.view addSubview:_progressView];
+    
     [_webView loadRequest:request];
     
-    [self.view addSubview:_webView];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        if ([change[NSKeyValueChangeKindKey] integerValue] == NSKeyValueObservingOptionNew) {
+            [_progressView setProgress:_webView.estimatedProgress animated:YES];
+        }
+        if (_webView.estimatedProgress == 1) {
+            _progressView.hidden = YES;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
