@@ -16,6 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedRemoteMessage:) name:@"receivedRemoteMessage" object:nil];
+    
+    
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [_activityIndicator setColor:[UIColor blackColor]];
+    _activityIndicator.center = self.view.center;
+    
     // Do any additional setup after loading the view, typically from a nib.
     WKWebViewConfiguration *conf = [[WKWebViewConfiguration alloc] init];
     [conf.userContentController addScriptMessageHandler:self name:@"trackEvent"];
@@ -31,13 +39,15 @@
     _progressView.frame = CGRectMake(0, 0, self.view.frame.size.width, 20);
     
     NSURL *url = [NSURL URLWithString:@"https://project-5518000328915581804.firebaseapp.com"];
-    //NSURL *url = [NSURL URLWithString:@"http://localhost:8100"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     [self.view addSubview:_progressView];
-    
+    [self.view addSubview:_activityIndicator];
+    [_activityIndicator startAnimating];
+
     [_webView loadRequest:request];
     
+    NSLog(@"TOKEN: %@", [[FIRInstanceID instanceID] token]);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
@@ -47,6 +57,7 @@
         }
         if (_webView.estimatedProgress == 1) {
             _progressView.hidden = YES;
+            [_activityIndicator stopAnimating];
         }
     }
 }
@@ -72,10 +83,39 @@
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     NSLog(@"%s. Error %@",__func__,error);
+    [_activityIndicator stopAnimating];
+    _progressView.hidden = YES;
 }
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+- (void) receivedRemoteMessage:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:@"receivedRemoteMessage"]) {
+        if (notification.userInfo) {
+            [self showAlert:notification.userInfo[@"message"]];
+        }
+    }
+}
+
+-(void) showAlert:(NSString *)message {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"News"
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                                actionWithTitle:@"Ok"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    //Handle your yes please button action here
+                                }];
+    
+    [alert addAction:okButton];
+
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
