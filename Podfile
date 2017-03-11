@@ -8,4 +8,5 @@ target 'smokeless' do
   # Pods for smokeless
   pod 'Firebase'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Database'
 end

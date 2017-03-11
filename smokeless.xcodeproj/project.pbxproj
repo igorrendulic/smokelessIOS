@@ -15,6 +15,9 @@
 		5D16D5391D14E5E600DC74C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D16D5371D14E5E600DC74C1 /* Main.storyboard */; };
 		5D16D53B1D14E5E600DC74C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D16D53A1D14E5E600DC74C1 /* Assets.xcassets */; };
 		5D16D53E1D14E5E600DC74C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D16D53C1D14E5E600DC74C1 /* LaunchScreen.storyboard */; };
+		5D19A40B1D55563300A88365 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D19A40A1D55563300A88365 /* Reachability.m */; };
+		5D4F69EE1D4541EC00C88940 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4F69ED1D4541EC00C88940 /* Log.m */; };
+		5D4F69F11D4547DA00C88940 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4F69F01D4547DA00C88940 /* LogViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,12 @@
 		5D16D53A1D14E5E600DC74C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D16D53D1D14E5E600DC74C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D16D53F1D14E5E600DC74C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D19A4091D55563300A88365 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		5D19A40A1D55563300A88365 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5D4F69EC1D4541EC00C88940 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		5D4F69ED1D4541EC00C88940 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		5D4F69EF1D4547DA00C88940 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		5D4F69F01D4547DA00C88940 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		C0EF2E4809CD3C681A47FB79 /* Pods-smokeless.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smokeless.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smokeless/Pods-smokeless.debug.xcconfig"; sourceTree = "<group>"; };
 		DBCE35AA914F0553D03E121C /* Pods-smokeless.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smokeless.release.xcconfig"; path = "Pods/Target Support Files/Pods-smokeless/Pods-smokeless.release.xcconfig"; sourceTree = "<group>"; };
 		F3E6782FE254E174147D2277 /* libPods-smokeless.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-smokeless.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +86,12 @@
 				5D16D53C1D14E5E600DC74C1 /* LaunchScreen.storyboard */,
 				5D16D53F1D14E5E600DC74C1 /* Info.plist */,
 				5D16D52E1D14E5E600DC74C1 /* Supporting Files */,
+				5D4F69EC1D4541EC00C88940 /* Log.h */,
+				5D4F69ED1D4541EC00C88940 /* Log.m */,
+				5D4F69EF1D4547DA00C88940 /* LogViewController.h */,
+				5D4F69F01D4547DA00C88940 /* LogViewController.m */,
+				5D19A4091D55563300A88365 /* Reachability.h */,
+				5D19A40A1D55563300A88365 /* Reachability.m */,
 			);
 			path = smokeless;
 			sourceTree = "<group>";
@@ -142,6 +157,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 2DX7C493T3;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -235,7 +253,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D16D5361D14E5E600DC74C1 /* ViewController.m in Sources */,
+				5D4F69F11D4547DA00C88940 /* LogViewController.m in Sources */,
 				5D16D5331D14E5E600DC74C1 /* AppDelegate.m in Sources */,
+				5D4F69EE1D4541EC00C88940 /* Log.m in Sources */,
+				5D19A40B1D55563300A88365 /* Reachability.m in Sources */,
 				5D16D5301D14E5E600DC74C1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 @import Firebase;
+#import "Log.h"
 
 @interface ViewController : UIViewController <WKScriptMessageHandler,WKNavigationDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
-@property (nonatomic, strong) UIProgressView *progressView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+@property (weak, nonatomic) IBOutlet UIButton *viewLogButton;
+
+@property (nonatomic, strong) UIProgressView *progressView;
 @end
 

@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "Reachability.h"
+
+NSString * destinationURL = @"https://project-5518000328915581804.firebaseapp.com/#/tabs/dash";
 
 @interface ViewController ()
 
@@ -19,10 +22,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedRemoteMessage:) name:@"receivedRemoteMessage" object:nil];
     
-    
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [_activityIndicator setColor:[UIColor blackColor]];
-    _activityIndicator.center = self.view.center;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkIfWebLoaded:) name:@"checkIfWebLoaded" object:nil];
     
     // Do any additional setup after loading the view, typically from a nib.
     WKWebViewConfiguration *conf = [[WKWebViewConfiguration alloc] init];
@@ -36,18 +36,29 @@
     [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     
     _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    _progressView.frame = CGRectMake(0, 0, self.view.frame.size.width, 20);
-    
-    NSURL *url = [NSURL URLWithString:@"https://project-5518000328915581804.firebaseapp.com"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    _progressView.center = self.view.center;
+    _progressView.hidden = NO;
+    [_progressView setProgress:0.0];
     
     [self.view addSubview:_progressView];
-    [self.view addSubview:_activityIndicator];
-    [_activityIndicator startAnimating];
-
-    [_webView loadRequest:request];
+    [self.view addSubview:_viewLogButton];
     
-    NSLog(@"TOKEN: %@", [[FIRInstanceID instanceID] token]);
+    [self loadPage];
+    
+    
+//    NSLog(@"TOKEN: %@", [[FIRInstanceID instanceID] token]);
+}
+
+
+- (void)loadPage {
+    
+    NSURL *url = [NSURL URLWithString:destinationURL];
+    
+    // NSURLRequestReturnCacheDataElseLoad
+    NSURLRequest  *request = [NSURLRequest requestWithURL:url];
+    
+    [_webView loadRequest:request];
+   
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
@@ -57,7 +68,6 @@
         }
         if (_webView.estimatedProgress == 1) {
             _progressView.hidden = YES;
-            [_activityIndicator stopAnimating];
         }
     }
 }
@@ -76,15 +86,30 @@
     }
 }
 
+
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"%s",__func__);
+    _progressView.hidden = YES;
+    NSLog(@"Navigation: %@", _webView.URL.absoluteString);
+    // Optional data
+}
+
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"redirect received");
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     NSLog(@"%s. Error %@",__func__,error);
-    [_activityIndicator stopAnimating];
+    if (error.code == NSURLErrorCancelled) return;
     _progressView.hidden = YES;
+    [self forceReload];
+    
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    NSLog(@"%s. Error %@",__func__,error);
+    [self forceReload];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -96,6 +121,19 @@
         if (notification.userInfo) {
             [self showAlert:notification.userInfo[@"message"]];
         }
+    }
+}
+
+- (void) checkIfWebLoaded:(NSNotification *) notification {
+    NSLog(@"Called checkIfWebLoaded");
+    if (_webView) {
+        NSLog(@"webView exists");
+        [_webView evaluateJavaScript:@"document.querySelector('div').innerHTML" completionHandler:^(id result, NSError * _Nullable error) {
+            if (!result) {
+                NSLog(@"Web not loaded! Fixing it! %@", error.localizedDescription);
+                [self loadPage];
+            }
+        }];
     }
 }
 
@@ -118,4 +156,23 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+-(void) forceReload {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Error"
+                                 message:@"Something went wrong. Please check you internet connection and press Retry"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"Retry"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   //Handle your yes please button action here
+                                   [self loadPage];
+                               }];
+    
+    [alert addAction:okButton];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 @end
